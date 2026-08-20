@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jessica245818.github.io/jessica-portfolio/sitemap.xml

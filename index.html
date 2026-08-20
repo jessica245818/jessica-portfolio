@@ -3,8 +3,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Jessica George — data and machine learning portfolio with a transparent content-opportunity demo.">
-  <title>Jessica George · Data and ML portfolio</title>
+  <meta name="description" content="Jessica George analyzes search-performance data and builds transparent machine-learning tools for practical content decisions.">
+  <meta name="theme-color" content="#17324D">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://jessica245818.github.io/jessica-portfolio/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Jessica George Portfolio">
+  <meta property="og:title" content="Jessica George · Search Data and Machine Learning">
+  <meta property="og:description" content="Transparent analysis and machine-learning tools that help content teams decide what to do next.">
+  <meta property="og:url" content="https://jessica245818.github.io/jessica-portfolio/">
+  <meta property="og:image" content="https://jessica245818.github.io/jessica-portfolio/social-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Jessica George — search data, machine learning, and decision support">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Jessica George · Search Data and Machine Learning">
+  <meta name="twitter:description" content="Transparent analysis and machine-learning tools for practical content decisions.">
+  <meta name="twitter:image" content="https://jessica245818.github.io/jessica-portfolio/social-preview.png">
+  <title>Jessica George · Search Data and Machine Learning Portfolio</title>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Jessica George","url":"https://jessica245818.github.io/jessica-portfolio/","sameAs":["https://github.com/jessica245818"],"knowsAbout":["Search performance analysis","Machine learning","Decision support"]}</script>
   <style>
     :root { color-scheme:light; --ink:#111827; --paper:#F7F6F2; --navy:#17324D; --amber:#87521F; --muted:#52606D; --line:#D8DEE6; --panel:#FFFFFF; --success:#216E4E; --focus:#A65F18; }
     * { box-sizing:border-box; }
@@ -127,11 +144,10 @@
     const copy = document.querySelector('#result-copy');
     form.addEventListener('submit', (event) => {
       event.preventDefault();
-      const impressions = Number(document.querySelector('#impressions').value);
-      const position = Number(document.querySelector('#position').value);
-      const ctr = Number(document.querySelector('#ctr').value);
-      if (![impressions, position, ctr].every(Number.isFinite)) {
-        title.textContent = 'Check the inputs'; score.textContent = 'All three values must be numbers.'; copy.textContent = 'No score was calculated.'; return;
+      const rawValues = ['#impressions', '#position', '#ctr'].map(selector => document.querySelector(selector).value.trim());
+      const [impressions, position, ctr] = rawValues.map(Number);
+      if (rawValues.some(value => value === '') || ![impressions, position, ctr].every(Number.isFinite)) {
+        title.textContent = 'Check the inputs'; score.textContent = 'Enter a valid number in all three fields.'; copy.textContent = 'No score was calculated or saved.'; return;
       }
       const eligible = impressions >= 300 && position > 0 && position <= 20 && ctr < 0.50;
       if (eligible) {
